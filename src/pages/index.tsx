@@ -1,7 +1,7 @@
 import Faqs from '@/components/faqs';
 import Brands from '@/components/brands';
 import AnimatedLink from '@/components/animated-link';
-import { NextPage } from 'next';
+import { GetStaticProps, NextPage } from 'next';
 import axios from 'axios';
 import { Brand, Faq } from '@/types';
 import { NextSeo } from 'next-seo';
@@ -47,10 +47,11 @@ const Home: NextPage<Props> = ({ faqs, brands }) => {
   );
 };
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
+  const APP_URL = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
   const [faqs, brands] = await Promise.all([
-    axios.get('/api/faqs'),
-    axios.get(`/api/brands`),
+    axios.get(`${APP_URL}/api/faqs`),
+    axios.get(`${APP_URL}/api/brands`),
   ]);
 
   return {
@@ -58,6 +59,7 @@ export const getServerSideProps = async () => {
       faqs: faqs.data,
       brands: brands.data,
     },
+    revalidate: 60 * 60 * 12,
   };
 };
 
