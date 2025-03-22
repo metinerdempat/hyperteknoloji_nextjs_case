@@ -8,9 +8,10 @@ type Props = {
   className?: string;
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
+  onClick?: () => void;
 };
 
-const AnimatedLink: FC<Props> = ({ text, href, className = '', leftIcon, rightIcon }) => {
+const AnimatedLink: FC<Props> = ({ text, href, className = '', leftIcon, rightIcon, ...props }) => {
   const mergedClassName = clsx(
     'flex items-center gap-2',
     'bg-white dark:bg-blue-500 dark:text-white px-6 py-3 rounded-sm shadow-md font-medium relative z-1 hover:text-white',
@@ -20,7 +21,7 @@ const AnimatedLink: FC<Props> = ({ text, href, className = '', leftIcon, rightIc
   );
 
   return (
-    <Link href={href} className={mergedClassName}>
+    <Link href={href} className={mergedClassName} {...props}>
       {leftIcon && leftIcon}
       {text}
       {rightIcon && rightIcon}
