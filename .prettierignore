@@ -1,0 +1,11 @@
+node_modules
+public
+dist
+README.md
+tsconfig.*
+.env.*
+package.json
+yarn.lock
+*-error.log
+nevt-env.d.ts
+.next
