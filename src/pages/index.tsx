@@ -48,7 +48,7 @@ const Home: NextPage<Props> = ({ faqs, brands }) => {
 };
 
 export const getStaticProps = async () => {
-  const APP_URL = 'https://hyperteknoloji-nextjs-case.vercel.app/'
+  const APP_URL = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
   const [faqs, brands] = await Promise.all([
     axios.get(`${APP_URL}/api/faqs`),
     axios.get(`${APP_URL}/api/brands`),
@@ -59,7 +59,7 @@ export const getStaticProps = async () => {
       faqs: faqs.data,
       brands: brands.data,
     },
-    revalidate: 60 * 60 * 24,
+    revalidate: 60 * 60 * 12,
   };
 };
 
