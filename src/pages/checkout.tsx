@@ -39,7 +39,7 @@ const initialForm = {
   cardCvv: '',
 };
 
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://hyperteknoloji-nextjs-case.vercel.app/';
 
 const CheckoutPage: FC<Props> = () => {
   const basket = useSelector((state: RootState) => state.basketStore.basket);
