@@ -48,11 +48,9 @@ const Home: NextPage<Props> = ({ faqs, brands }) => {
 };
 
 export const getServerSideProps = async () => {
-  const BASE_APP_URL = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
-
   const [faqs, brands] = await Promise.all([
-    axios.get(`${BASE_APP_URL}/api/faqs`),
-    axios.get(`${BASE_APP_URL}/api/brands`),
+    axios.get('/api/faqs'),
+    axios.get(`/api/brands`),
   ]);
 
   return {

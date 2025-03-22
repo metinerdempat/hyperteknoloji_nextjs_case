@@ -39,7 +39,6 @@ const initialForm = {
   cardCvv: '',
 };
 
-const APP_URL =process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
 
 const CheckoutPage: FC<Props> = () => {
   const basket = useSelector((state: RootState) => state.basketStore.basket);
@@ -51,7 +50,7 @@ const CheckoutPage: FC<Props> = () => {
   });
 
   const onSubmit = async (data: z.infer<typeof checkoutSchema>) => {
-    const response = await axios.post(`${APP_URL}/api/checkout`, {
+    const response = await axios.post('/api/checkout', {
       basket,
     });
     if (response.status !== 200) {
